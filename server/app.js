@@ -2,17 +2,21 @@ const express = require("express");
 require("express-async-errors");
 require("dotenv").config();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
-const corsOptions = require("./src/helpers/corsOptions");
 const router = require("./src/routers");
-require("./src/db/dbConnection");
 const errorHandler = require("./src/middlewares/errorHandler");
+const connectDB = require("./src/db/dbConnection");
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 5000;
+connectDB();
 
 //Cors
-app.use(cors(corsOptions));
+app.use(
+  cors({ credentials: true, origin: "http://localhost:3000/", origin: true })
+);
 
 //Sanitize data to prevent NoSQL injection
 app.use(
@@ -24,15 +28,12 @@ app.use(
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use("/public", express.static(__dirname + "/public"));
 
 //Routes
-app.get("/", (req, res) => {
-  res.json({
-    message: "Hoş Geldiniz",
-  });
-});
 
-app.use("/api", router);
+app.use("/", router);
 
 //Error cacth
 app.use(errorHandler);

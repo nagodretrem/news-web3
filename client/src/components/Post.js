@@ -1,22 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
-const Post = () => {
+const Post = ({ title, summary, slug, image, createdAt, author }) => {
   return (
     <div className="post">
       <div className="image">
-        <img src="https://techcrunch.com/wp-content/uploads/2022/12/lawnmower-Large.jpeg?w=1390&crop=1"></img>
+        <Link to={`/post/${slug}`}>
+          <img src={"http://localhost:5000/" + image} alt=""></img>
+        </Link>
       </div>
       <div className="texts">
-        <h2>Full-house battery backup coming later this year</h2>
-        <p className="info">
-          <a className="author">Mert Erdogan</a>
-          <time>2023-01-10 20:45</time>
-        </p>
-        <p className="summary">
-          Today at its special launch event, home backup power giant EcoFlow
-          launched a flurry of new products, including a “Whole-Home Backup
-          Power Solution.
-        </p>
+        <Link to={`/post/${slug}`}>
+          <h2>{title}</h2>
+        </Link>
+        <div className="info">
+          <div className="author">{author.name + " " + author.lastname}</div>
+          <time>{format(new Date(createdAt), "d MMM yyyy  HH:mm")}</time>
+        </div>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );

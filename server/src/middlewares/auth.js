@@ -14,14 +14,14 @@ const createToken = async (user, res) => {
     algorithm: "HS512",
   });
 
-  return res.status(201).json({
+  return res.cookie("token", token).status(201).json({
     token,
     message: "User logged in successfully",
   });
 };
 
 const verifyToken = async (req, res, next) => {
-  const token = req.headers["authorization"].split(" ")[1];
+  const { token } = req.cookies;
 
   if (!token) {
     throw new APIError("Token is required", 401);
@@ -30,7 +30,7 @@ const verifyToken = async (req, res, next) => {
   try {
     const decoded = await jwt.verify(token, process.env.JWT_SECRET_KEY);
     const userInfo = await User.findById(decoded.sub).select(
-      "_id name lastname email role"
+      "_id name lastname email role balance"
     );
 
     if (!userInfo) {
