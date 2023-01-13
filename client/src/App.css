@@ -7,6 +7,7 @@ body{
 }
 img{
   max-width: 100%;
+  margin-bottom: 25px;
 }
 main{
   padding: 10px;
@@ -104,6 +105,7 @@ button{
   padding: 8px 0;
   
 }
+
 form.login h1, form.register h1{
   text-align: center;
 }

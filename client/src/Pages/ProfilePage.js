@@ -38,11 +38,24 @@ const ProfilePage = () => {
     // Code to handle deleting post
   };
 
+  const navigateToWithdraw = () => {
+    // 👇️
+    window.location.href = "/withdrawal";
+  };
   return (
     <div>
       <>
-        <h2>{name} Posts</h2>
-        <h3>Balance: {balance}</h3>
+        <div className="d-flex justify-content-between align-items-center">
+          <h2>{name} Posts</h2>
+          <h3>Balance: {balance}</h3>
+          <Button
+            style={{ width: "auto" }}
+            onClick={navigateToWithdraw}
+            variant="warning"
+          >
+            Whitdraw Token
+          </Button>
+        </div>
         <Table striped>
           <thead>
             <tr>

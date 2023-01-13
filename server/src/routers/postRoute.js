@@ -7,11 +7,6 @@ const Post = require("../models/postModel");
 const { verifyToken } = require("../middlewares/auth");
 
 router.post("/post", verifyToken, upload, async (req, res) => {
-  const { token } = req.cookies;
-  console.log("req.savedImages : ", req.savedImages);
-  console.log("req.body : ", req.body);
-  console.log("token", token);
-  console.log("req.user", req.user);
   try {
     const post = await Post.create({
       title: req.body.title,

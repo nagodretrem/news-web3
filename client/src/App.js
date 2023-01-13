@@ -9,6 +9,7 @@ import { UserContextProvider } from "./UserContext";
 import PostPage from "./Pages/PostPage";
 import ProfilePage from "./Pages/ProfilePage";
 import AdminPage from "./Pages/AdminPage";
+import WithdrawalPage from "./Pages/WithdrawalPage";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/post/:slug" element={<PostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/withdrawal" element={<WithdrawalPage />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Route>
       </Routes>
     </UserContextProvider>

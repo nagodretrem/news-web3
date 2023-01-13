@@ -9,6 +9,7 @@ const fileFilter = (req, file, cb) => {
     "image/gif",
     "image/jpeg",
     "image/png",
+    "image/webp",
   ];
 
   if (!allowedMimeTypes.includes(file.mimetype)) {
