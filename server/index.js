@@ -15,7 +15,7 @@ connectDB();
 
 //Cors
 app.use(
-  cors({ credentials: true, origin: "http://localhost:3000/", origin: true })
+  cors({ credentials: true, origin: "https://merte.dev/", origin: true })
 );
 
 //Sanitize data to prevent NoSQL injection
