@@ -7,7 +7,7 @@ const Post = ({ title, summary, slug, image, createdAt, author }) => {
     <div className="post">
       <div className="image">
         <Link to={`/post/${slug}`}>
-          <img src={"http://localhost:5000/" + image} alt=""></img>
+          <img src={process.env.APP_REACT_BASE_URL + image} alt=""></img>
         </Link>
       </div>
       <div className="texts">

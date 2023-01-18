@@ -8,7 +8,7 @@ const Header = () => {
   useEffect(() => {
     async function auth() {
       try {
-        const response = await fetch("http://localhost:5000/auth", {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth`, {
           credentials: "include",
         });
         const data = await response.json();
@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   const logout = () => {
-    fetch("http://localhost:5000/logout", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/logout`, {
       method: "POST",
       credentials: "include",
     })
