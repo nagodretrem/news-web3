@@ -22,7 +22,9 @@ const WithdrawalPage = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const user = await fetch(`http://localhost:5000/user/${_id}`);
+        const user = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/user/${_id}`
+        );
         const userData = await user.json();
         setUserBalance(userData.data.balance);
       } catch (error) {
@@ -66,7 +68,7 @@ const WithdrawalPage = () => {
   };
 
   const setDbBalance = async (prop) => {
-    await fetch(`http://localhost:5000/user/${_id}`, {
+    await fetch(`${process.env.REACT_APP_BASE_URL}/user/${_id}`, {
       method: "PATCH",
       body: JSON.stringify({
         balance: prop,

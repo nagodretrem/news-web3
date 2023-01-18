@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const LoginPage = () => {
   }
 
   const auth = () => {
-    fetch("http://localhost:5000/auth", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/auth`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((data) => {

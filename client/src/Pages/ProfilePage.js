@@ -19,7 +19,7 @@ const ProfilePage = () => {
       try {
         // getPosts fonksiyonu
         const postsResponse = await fetch(
-          `http://localhost:5000/profile/${_id}`
+          `${process.env.REACT_APP_BASE_URL}/profile/${_id}`
         );
         const postsData = await postsResponse.json();
         setPosts(postsData.data);

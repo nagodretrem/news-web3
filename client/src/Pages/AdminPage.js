@@ -14,7 +14,9 @@ const AdminPage = () => {
     async function fetchData() {
       try {
         // getPosts fonksiyonu
-        const postsResponse = await fetch(`http://localhost:5000/post`);
+        const postsResponse = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/post`
+        );
         const postsData = await postsResponse.json();
         setPosts(postsData.data);
       } catch (error) {
@@ -25,14 +27,15 @@ const AdminPage = () => {
     async function fetchData2() {
       try {
         // getUsers fonksiyonu
-        const usersResponse = await fetch(`http://localhost:5000/users`);
+        const usersResponse = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/users`
+        );
         const usersData = await usersResponse.json();
         setUsers(usersData.data);
       } catch (error) {
         console.log(error);
       }
     }
-
     fetchData();
     fetchData2();
   }, []);
@@ -53,18 +56,21 @@ const AdminPage = () => {
 
     try {
       if (userStatus === "unpublished") {
-        const response = await fetch(`http://localhost:5000/post/${_id}`, {
-          method: "PATCH",
-          body: JSON.stringify({ status: "published" }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/post/${_id}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({ status: "published" }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const json = await response.json();
         console.log(json);
 
         const response2 = await fetch(
-          `http://localhost:5000/user/${authorID}`,
+          `${process.env.REACT_APP_BASE_URL}/user/${authorID}`,
           {
             method: "PATCH",
             body: JSON.stringify({
@@ -79,18 +85,21 @@ const AdminPage = () => {
         const json2 = await response2.json();
         console.log(json2);
       } else {
-        const response3 = await fetch(`http://localhost:5000/post/${_id}`, {
-          method: "PATCH",
-          body: JSON.stringify({ status: "unpublished" }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response3 = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/post/${_id}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({ status: "unpublished" }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const json3 = await response3.json();
         console.log(json3);
 
         const response4 = await fetch(
-          `http://localhost:5000/user/${authorID}`,
+          `${process.env.REACT_APP_BASE_URL}/user/${authorID}`,
 
           {
             method: "PATCH",

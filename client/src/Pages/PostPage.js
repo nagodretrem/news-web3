@@ -7,7 +7,7 @@ const PostPage = () => {
   const [postInfo, setPostInfo] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${slug}`).then((res) => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/post/${slug}`).then((res) => {
       res.json().then((postInfo) => {
         setPostInfo(postInfo.data);
       });
@@ -24,7 +24,7 @@ const PostPage = () => {
       <div className="author">{author.name + " " + author.lastname}</div>
 
       <div className="image">
-        <img src={`http://localhost:5000/${image}`}></img>
+        <img src={`${process.env.REACT_APP_BASE_URL}/${image}`}></img>
       </div>
 
       <div

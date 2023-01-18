@@ -44,7 +44,7 @@ const CreatePost = () => {
     data.set("content", content);
     data.set("file", files[0]);
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/post", {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/post`, {
       method: "POST",
       body: data,
       credentials: "include",
