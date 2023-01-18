@@ -3,12 +3,18 @@ import Post from "../components/Post";
 
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/post`).then((res) => {
-      res.json().then((posts) => {
-        setPosts(posts.data);
-      });
-    });
+    async function posts() {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/post`);
+        const data = await response.json();
+        setPosts(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    posts();
   }, []);
 
   const newPosts = posts.filter((post) => post.status === "published");
