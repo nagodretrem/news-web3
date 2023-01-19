@@ -14,10 +14,16 @@ const createToken = async (user, res) => {
     algorithm: "HS512",
   });
 
-  return res.cookie("token", token).status(201).json({
-    token,
-    message: "User logged in successfully",
-  });
+  return res
+    .cookie("token", token, {
+      sameSite: "None",
+      secure: true,
+    })
+    .status(201)
+    .json({
+      token,
+      message: "User logged in successfully",
+    });
 };
 
 const verifyToken = async (req, res, next) => {
