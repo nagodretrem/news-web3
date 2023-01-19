@@ -14,9 +14,7 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 //Cors
-app.use(
-  cors({ credentials: true, origin: "https://merte.dev/", origin: true })
-);
+app.use(cors({ origin: "*" }));
 
 //Sanitize data to prevent NoSQL injection
 app.use(
